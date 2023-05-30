@@ -1,0 +1,45 @@
+﻿@model ReportManager.Models.Report
+
+@{
+    ViewBag.Title = "نمایش جزئیات";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    @Html.ActionLink("بازگشت به لیست", "Index", new { }, new { @class = "btn btn-primary btn-md" })
+
+</div>
+<h2>نمایش جزئیات</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+           عنوان
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+           دستورات
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Query)
+        </dd>
+
+        <dt>
+           وضعیت
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("ویرایش اطلاعات ", "Edit", new { id = Model.ID }, new { @class = "btn btn-success" })
+</p>

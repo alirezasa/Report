@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ReportManager.Models.TimeSheet>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>نمایش سوابق کاری</h2>
+
+
+
+
+@Html.ActionLink("افزودن", "Create", new { }, new { @class = "btn btn-success btn-md" })
+<table class="table">
+    <tr>
+        <th>
+           کد کاربر
+        </th>
+        <th>
+            سال مالی
+        </th>
+        <th>
+           ماه
+        </th>
+        <th>
+            تعداد روز کاری
+        </th>
+
+        <th>
+            عملیات
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Month)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkingDays)
+            </td>
+            <td>
+                @Html.ActionLink("ویرایش", "Edit", new { id = item.ID }, new { @class = "btn btn-primary btn-md" })
+                @Html.ActionLink("جزئیات", "Details", new { id = item.ID }, new { @class = "btn btn-warning btn-md" })
+                @Html.ActionLink("حذف", "Delete", new { id = item.ID }, new { @class = "btn btn-danger btn-md" })
+
+             
+            </td>
+        </tr>
+    }
+
+</table>

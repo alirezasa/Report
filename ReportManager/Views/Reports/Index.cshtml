@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ReportManager.Models.Report>
+
+@{
+    ViewBag.Title = "نمایش لیست گزارش";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>نمایش لیست گزارش</h2>
+
+<p>
+
+    @Html.ActionLink("افزودن", "Create", new { }, new { @class = "btn btn-success btn-md" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+           کد گزارش
+        </th>
+        <th>
+            عنوان گزارش
+        </th>
+        <th>
+            دستورات
+        </th>
+        <th>
+            وضعیت
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Query)
+        </td>
+        <td>
+
+
+            @if (item.Status == 1)
+            {
+                <span class="badge bg-label-success">فعال</span>
+            }
+            else
+            {
+                <span class="badge bg-label-danger">غیر فعال</span>
+            }
+
+
+        </td>
+        <td>
+            @Html.ActionLink("ویرایش", "Edit", new { id = item.ID }, new { @class = "btn btn-primary btn-md" })
+            @Html.ActionLink("جزئیات", "Details", new { id = item.ID }, new { @class = "btn btn-warning btn-md" })
+            @Html.ActionLink("حذف", "Delete", new { id = item.ID }, new { @class = "btn btn-danger btn-md" })
+        </td>
+    </tr>
+}
+
+</table>
